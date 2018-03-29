@@ -1,0 +1,43 @@
+development:
+  clients:
+    default:
+      database: drgcms_development
+      hosts:
+        - 127.0.0.1:27017
+#      username:
+#      password:
+  options:
+     raise_not_found_error: false
+
+test:
+  clients:
+    default:
+      database: testing
+      hosts:
+        - 127.0.0.1:27017
+#      username:
+#      password:
+  options:
+    raise_not_found_error: false
+
+stage:
+  clients:
+    default:
+      database: drgcms_stage
+      hosts:
+        - my.mongodb.server:27017
+#      username:
+#      password:
+  options:
+    raise_not_found_error: false
+
+production:
+  clients:
+    default:
+      database: drgcms_production
+      hosts:
+        - my.mongodb.server:27017
+#      username: <%= ENV['MONGOID_USERNAME'] %>  
+#      password: <%= ENV['MONGOID_PASSWORD'] %>  
+  options:
+    raise_not_found_error: false

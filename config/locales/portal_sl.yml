@@ -1,0 +1,24 @@
+en:
+  helpers:
+    label:
+      diary:
+        tabletitle: Dnevnik
+        choices4_duration: "10 min:10,15 min:15,20 min:20,30 min:30,45 min:45,1 ura:60,1 ura 30 min:90,2 uri:120,2 uri 30 min:150,3 ure:180,4 ure:240,5 ur:300,6 ur:360,7 ur:420,8 ur:480"
+        tab1: Osnova
+        tab2: Opis
+
+        title: Naslov
+        body: Opis
+        time_start: Pričetek
+        duration: Trajanje 
+        search: Iskanje  
+        user_id: Ustvaril
+
+    help:
+      diary:
+        title: Kratek naslov
+        body: Vsebina vpisa v dnevnik
+        time_start: Čas vpisa v dnevnik
+        duration: Dolžina trajanja dogodka
+        search: Podatki za iskanje dogodkov
+        user_id: Vpis je ustvaril
