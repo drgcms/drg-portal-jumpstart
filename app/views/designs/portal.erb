@@ -3,19 +3,21 @@
 <div id="site-frame">
   <div id="site-top">
     <div style="float: left;"> 
-      <%= link_to image_tag("/assets/logo.png", :border => 0), '/' %>
+      <%= link_to image_tag('logo.png', :border => 0), '/' %>
       <span id="app-title">PORTAL</span>
     </div>
     <div style="float: right;"> 
       <%= dc_render(:portal_skupno, method: 'login') %> 
     </div>
     <div style="clear: both;"></div>
- </div>
- <%= dc_render(:dc_simple_menu, name: 'meni-portal') %>
+  </div>
+  
+  <%= dc_render(:dc_simple_menu, name: 'portal') %>
 
- <div id="page">
-   <div id='naslov-akcije'><%= dc_render(@options['renderer']) %></div>
- </div>
+  <div id="page">
+    <%= dc_render( @options['renderer'] || @page.subject_link ) %>
+  </div>
 </div>
 
 <%= dc_page_bottom %>
+

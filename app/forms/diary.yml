@@ -50,6 +50,10 @@ form:
         name: duration
         type: select
         
+      50:
+        name: closed
+        type: check_box
+        
     tab2:
       10:
         name: body

@@ -1,4 +1,4 @@
-en:
+sl:
   helpers:
     label:
       diary:
@@ -13,6 +13,7 @@ en:
         duration: Trajanje 
         search: Iskanje  
         user_id: Ustvaril
+        closed: Zaključen
 
     help:
       diary:
@@ -22,3 +23,5 @@ en:
         duration: Dolžina trajanja dogodka
         search: Podatki za iskanje dogodkov
         user_id: Vpis je ustvaril
+        closed: Dokument zaključen. Nadaljno delo ni potrebno.
+        

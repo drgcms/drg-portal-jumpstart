@@ -136,13 +136,14 @@ def seed
   site = DcSite.new(
     name: 'portal.mysite.com',
     homepage_link: "home",
-    menu_class: "DcSimpleMenu",
-    menu_name: "site-menu",
+    menu_class: "DcMenu",
+    menu_name: "portal",
     page_class: "DcPage",
     page_table: "dc_page",
     files_directory: "files",    
     settings: "ckeditor:\n config_file: /files/ck_config.js\n css_file: /files/ck_css.css\n",
     site_layout: "content")
+=begin  
 # this should end in application css file  
     site.css =<<EOT
 #site-top, #site-main, #site-bottom, #site-menu {
@@ -150,37 +151,23 @@ width: 99.5%px;
 margin: 0px auto;
 padding-top: 5px;}    
 EOT
+=end
   site.save
 # Default site policy
   policy = DcPolicy.new(
     description: "Default policy",
     is_default: true,
-    message: "Access denied.",
+    message: "Access denied. You shold be logged in for this operation.",
     name: "Default policy")
   site.dc_policies << policy
 # Policy rules. Administrator can edit guest can view
   rule = DcPolicyRule.new( dc_policy_role_id: sa._id, permission: DcPermission::CAN_EDIT)
   policy.dc_policy_rules << rule
-  rule = DcPolicyRule.new( dc_policy_role_id: guest._id, permission: DcPermission::CAN_VIEW)
+  rule = DcPolicyRule.new( dc_policy_role_id: guest._id, permission: DcPermission::NO_ACCESS)
   policy.dc_policy_rules << rule
 # Design document  
-  design = DcDesign.new(description: 'Simple page')
-  design.body =<<EOT
-<div id="site">
-  <div id="site-top">
-    <a href="/">SITE LOGO</a>
-  </div>
-  <div id="site-menu">
-    <%= dc_render(:dc_simple_menu, method: 'as_table') %>\
-  </div> 
-  <div id="site-main">
-   <%= dc_render(:dc_page) %>
-  </div>
-  <div id="site-bottom">
-   <%= dc_render(:dc_piece, name: 'site-bottom') %>
-  </div>
-</div>
-EOT
+  design = DcDesign.new(description: 'Default portal design')
+  design.rails_view = 'designs/portal'
   design.save
 # Page document
   page = DcPage.new(
@@ -189,78 +176,51 @@ EOT
     dc_design_id: design._id,
     dc_site_id: site._id,
     publish_date: Time.now,
-    body: '<p>First page data</p>'
+    params: 'renderer: dashboard'
   )
   page.save
-# Site bottom document
-  bottom = DcPiece.new(
-    name: 'site-bottom',
-    description: 'Site bottom document',
-    site_id: site._id,
-    body: '<p>(C)opyright by ME</p>'
-  )
-  bottom.save
 # Menu
-  menu = DcSimpleMenu.new(
-    name: "site-menu",
-    description: "Menu for my Site",
+  menu = DcMenu.new(
+    name: "portal",
+    description: "Internal portal menu",
     )
-  menu.css =<<EOT
-.site-menu {
-  width:500px;
-  margin: 0 auto;
-  border-spacing: 0px;
-  font-weight: bold;
-  border: none;
-}
-
-.td-site-menu-item {
-  font-size: 18px;
-  background-color: #fff;
-  border-left: 20px solid #fff;
-  border-right: 20px solid #fff;
-  padding: 10px;
-  text-align: center;
-  border-radius: 1px;
-  white-space: nowrap
-}
-
-.td-site-menu-item:hover {
-  background-color: #000;
-}
-
-.td-site-menu-selected {
-  font-size: 18px;
-  background-color: #000;
-  border-left: 20px solid white;
-  border-right: 20px solid white;
-  padding: 10px;
-  text-align: center;
-  white-space: nowrap;
-}
-
-.site-menu a {
-  color: #000;
-}
-
-.td-site-menu-item:hover a, .td-site-menu-selected a {
-  color: #fff;
-}
-
-EOT
- 
   menu.save
 # Items
-  item = DcSimpleMenuItem.new(caption: 'Home', link: 'home', order: 10)
-  menu.dc_simple_menu_items << item
+  item = DcMenuItem.new(caption: 'Home', link: 'home', order: 10)
+  menu.dc_menu_items << item
 # This menu item will be selected when page is displayed  
-  page.menu_id= item._id
+  page.menu_id = item._id
   page.save
-  item = DcSimpleMenuItem.new(caption: 'Menu item 2', link: 'menu-item-2', order: 20)
-  menu.dc_simple_menu_items << item
-  item = DcSimpleMenuItem.new(caption: 'My site', link: 'http://www.drgcms.org', 
-                              target: '_blank', order: 30)
-  menu.dc_simple_menu_items << item
+
+# Page and menu for Diary
+  page = DcPage.new(
+    subject: 'Diary',
+    subject_link: 'diary',
+    dc_design_id: design._id,
+    dc_site_id: site._id,
+    publish_date: Time.now
+  )
+  page.save
+# 
+  item = DcMenuItem.new(caption: 'Diary', link: 'diary', order: 20)
+  menu.dc_menu_items << item
+  page.menu_id = item._id
+  page.save
+
+# Additional empty page
+  page = DcPage.new(
+    subject: 'Empty',
+    subject_link: 'empty',
+    dc_design_id: design._id,
+    dc_site_id: site._id,
+    publish_date: Time.now
+  )
+  page.save
+# 
+  item = DcMenuItem.new(caption: 'Empty', link: 'empty', order: 30)
+  menu.dc_menu_items << item
+  page.menu_id = item._id
+  page.save
   p 'Seed data created succesfully.'
 end
 
