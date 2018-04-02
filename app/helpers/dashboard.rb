@@ -92,7 +92,7 @@ end
 # Simulating error dashboard element
 ########################################################################
 def dash_030_error
-  if @user.user_name == 'rems'
+  if @user.username == 'rems'
     dashboard_element(:info, 'HELLO MR. REMS', '')
   else
     dashboard_element(:error, 'YOU ARE NOT MR. REMS', 'This is error')
