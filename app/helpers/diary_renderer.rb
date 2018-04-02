@@ -24,14 +24,13 @@
 ########################################################################
 #
 ########################################################################
-class HomeRenderer < DcRenderer
-
+class DiaryRenderer < DcRenderer
+  
 ########################################################################
 #
 ########################################################################
 def default
-  dashboard = Dashboard.new(@parent.session[:user_id], @parent.session[:user_roles]).render
-  (dashboard.html + '<iframe id="iframe_edit" name="iframe_edit"></iframe>')
+  @parent.render(partial: 'diary/menu', formats: [:html])
 end
 
 end

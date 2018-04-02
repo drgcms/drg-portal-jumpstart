@@ -9,7 +9,7 @@ sl:
 
         title: Naslov
         body: Opis
-        time_start: Pričetek
+        time_begin: Pričetek
         duration: Trajanje 
         search: Iskanje  
         user_id: Ustvaril
@@ -19,7 +19,7 @@ sl:
       diary:
         title: Kratek naslov
         body: Vsebina vpisa v dnevnik
-        time_start: Čas vpisa v dnevnik
+        time_begin: Čas vpisa v dnevnik
         duration: Dolžina trajanja dogodka
         search: Podatki za iskanje dogodkov
         user_id: Vpis je ustvaril

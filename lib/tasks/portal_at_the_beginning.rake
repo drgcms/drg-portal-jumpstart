@@ -108,10 +108,11 @@ end
 # Initial database seed
 ########################################################################
 def seed
-#  DcSite.all.delete
-#  DcSimpleMenu.all.delete
-#  DcPage.all.delete
-#  DcPiece.all.delete
+  if ARGV.last == '-clear'
+    DcSite.all.delete
+    DcSimpleMenu.all.delete
+    DcPage.all.delete
+  end
   
   if DcSite.all.size > 0
     p 'DcSite (Sites) collection is not empty! Aborting.'
@@ -137,21 +138,12 @@ def seed
     name: 'portal.mysite.com',
     homepage_link: "home",
     menu_class: "DcMenu",
-    menu_name: "portal",
+    menu_name: "portal-menu",
     page_class: "DcPage",
     page_table: "dc_page",
     files_directory: "files",    
     settings: "ckeditor:\n config_file: /files/ck_config.js\n css_file: /files/ck_css.css\n",
     site_layout: "content")
-=begin  
-# this should end in application css file  
-    site.css =<<EOT
-#site-top, #site-main, #site-bottom, #site-menu {
-width: 99.5%px;
-margin: 0px auto;
-padding-top: 5px;}    
-EOT
-=end
   site.save
 # Default site policy
   policy = DcPolicy.new(
@@ -161,9 +153,9 @@ EOT
     name: "Default policy")
   site.dc_policies << policy
 # Policy rules. Administrator can edit guest can view
-  rule = DcPolicyRule.new( dc_policy_role_id: sa._id, permission: DcPermission::CAN_EDIT)
+  rule = DcPolicyRule.new( dc_policy_role_id: sa.id, permission: DcPermission::CAN_EDIT)
   policy.dc_policy_rules << rule
-  rule = DcPolicyRule.new( dc_policy_role_id: guest._id, permission: DcPermission::NO_ACCESS)
+  rule = DcPolicyRule.new( dc_policy_role_id: guest.id, permission: DcPermission::NO_ACCESS)
   policy.dc_policy_rules << rule
 # Design document  
   design = DcDesign.new(description: 'Default portal design')
@@ -173,23 +165,27 @@ EOT
   page = DcPage.new(
     subject: 'Home page',
     subject_link: 'home',
-    dc_design_id: design._id,
-    dc_site_id: site._id,
+    dc_design_id: design.id,
+    dc_site_id: site.id,
     publish_date: Time.now,
-    params: 'renderer: dashboard'
   )
   page.save
 # Menu
   menu = DcMenu.new(
-    name: "portal",
+    name: "portal-menu",
     description: "Internal portal menu",
+    dc_site_id: site.id
     )
   menu.save
+# update menu_id in site  
+  site.menu_id = menu.id
+  site.save
 # Items
   item = DcMenuItem.new(caption: 'Home', link: 'home', order: 10)
+  item.page_id = page.id
   menu.dc_menu_items << item
 # This menu item will be selected when page is displayed  
-  page.menu_id = item._id
+  page.menu_id = "#{menu.id};#{item.id}"
   page.save
 
 # Page and menu for Diary
@@ -197,29 +193,31 @@ EOT
     subject: 'Diary',
     subject_link: 'diary',
     dc_design_id: design._id,
-    dc_site_id: site._id,
+    dc_site_id: site.id,
     publish_date: Time.now
   )
   page.save
 # 
   item = DcMenuItem.new(caption: 'Diary', link: 'diary', order: 20)
+  item.page_id = page.id
   menu.dc_menu_items << item
-  page.menu_id = item._id
+  page.menu_id = "#{menu.id};#{item.id}"
   page.save
 
 # Additional empty page
   page = DcPage.new(
-    subject: 'Empty',
-    subject_link: 'empty',
-    dc_design_id: design._id,
-    dc_site_id: site._id,
+    subject: 'Blank',
+    subject_link: 'blank',
+    dc_design_id: design.id,
+    dc_site_id: site.id,
     publish_date: Time.now
   )
   page.save
 # 
-  item = DcMenuItem.new(caption: 'Empty', link: 'empty', order: 30)
+  item = DcMenuItem.new(caption: 'Blank', link: 'blank', order: 30)
+  item.page_id = page.id
   menu.dc_menu_items << item
-  page.menu_id = item._id
+  page.menu_id = "#{menu.id};#{item.id}"
   page.save
   p 'Seed data created succesfully.'
 end

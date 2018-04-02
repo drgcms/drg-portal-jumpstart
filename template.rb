@@ -68,6 +68,7 @@ def update_routes
 %Q[
   root :to => "portal#page"
   DrgCms.routes
+  resources :init # remove after initial run
 
   get '*path' => "portal#page"
 

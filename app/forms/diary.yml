@@ -21,7 +21,7 @@ result_set:
       name: title
       width: 40%
     20: 
-      name: time_started
+      name: time_begin
       format: '%d.%m.%Y'
     30: 
       name: duration
@@ -41,7 +41,7 @@ form:
         size: 50
         
       30:
-        name: time_started
+        name: time_begin
         type: datetime_picker
         options:
           step: 15
