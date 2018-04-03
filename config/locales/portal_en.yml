@@ -12,7 +12,7 @@ en:
         time_begin: Start time
         duration: Duration 
         search: Search  
-        user_id: Created by
+        created_by: Owner
         closed: Closed
 
     help:
@@ -22,5 +22,5 @@ en:
         time_begin: Time or date when note is created or event started
         duration: Duration of event
         search: Data used for searching data  
-        user_id: This note was created by
+        created_by: This note was created by
         closed: Document is closed. No further work necessary.

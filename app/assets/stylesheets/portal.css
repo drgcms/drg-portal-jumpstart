@@ -72,13 +72,14 @@ margin-left: 3em;
 }
 #page hr {
   margin-top: 12px; 
+  background: linear-gradient(to right, #ddd 0%, #eee 100%);
 }
 
 /*********************** Portal menu *************************/
 #portal-menu {
   margin: 8px 0 8px;
   text-align: left;
-  background-color: #ddd;
+  background: linear-gradient(to right, #ddd 0%, #eee 100%)
 }
 
 #portal-menu a {

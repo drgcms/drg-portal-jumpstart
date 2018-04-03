@@ -12,9 +12,10 @@ index:
     2: filter
 
 result_set:
-  filter: diary_filter
+  filter: current_user_documents
   actions: 
     1: edit
+    2: delete
 
   columns:
     10: 
@@ -33,7 +34,7 @@ form:
       10:
         name: user_id
         type: readonly
-        eval: dc_name4_id(dc_user,name)
+        eval: dc_name4_id,dc_user,name        
         
       20:
         name: title

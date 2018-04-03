@@ -236,6 +236,17 @@ def seed_data
   menu.dc_menu_items << item
   page.menu_id = "#{menu.id};#{item.id}"
   page.save
+# Page document for login
+  page = DcPage.new(
+    subject: 'Login',
+    subject_link: 'login',
+    dc_design_id: design.id,
+    dc_site_id: site.id,
+    publish_date: Time.now,
+    params: %Q[render: "dc_render(:dc_poll, poll_id: 'login')"]
+  )
+  page.save
+
   
 end
 

@@ -69,7 +69,7 @@ def update_routes
   root :to => 'portal#page'
   DrgCms.routes
 
-  post '/portal/process_login' => 'portal#process_login'
+  put '/portal/process_login' => 'portal#process_login'
   resources :init # remove after initial run
   get '*path' => 'portal#page'
 
