@@ -1,18 +1,20 @@
-<div style="font-size: 1.5em; line-height: 1.6em; padding: 1em;">
+<div style="font-size: 1.5em; line-height: 1.6em; padding: 1em; background-color: #eee;">
 
 <h2>DRG CMS portal initialization</h2>
-<div class="dc-form-error"><%= flash[:error].html_safe %> </div>
+<% if flash[:error].size > 0 %>
+  <div class="dc-form-error"><%= flash[:error].html_safe %></div>
+<% end %>
 <br>
-<div>Define username for super user and it's password.</div>
+<div>Define username and password for super user.</div>
 <br>
 <%= form_tag 'init', method: :post do %>
-  <div class="label">Super user name</div>
+  <div class="label">Super user name *</div>
   <div class="dc-form-field"><%= text_field_tag :superuser, '' , minlength: '6' %></div>
 
-  <div class="label">Super user password</div>
+  <div class="label">Super user password *</div>
   <div class="dc-form-field"><%= password_field_tag :password, '', minlength: '8' %></div>
 
-  <div class="label">Super user repeat password</div>
+  <div class="label">Super user repeat password *</div>
   <div class="dc-form-field"><%= password_field_tag :password1, '', minlength: '8' %></div>
 
   <br>

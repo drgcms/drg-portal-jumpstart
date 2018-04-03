@@ -25,6 +25,27 @@
 #
 ########################################################################
 class HomeRenderer < DcRenderer
+  
+########################################################################
+# Render login/logout and loged in user
+########################################################################
+def login
+  html = if @parent.session[:user_id].nil?
+%Q[
+  <span class="portal-login">
+  #{@parent.link_to('Login:', '/login')}
+  </span>
+]
+  else
+%Q[
+  <span class="portal-login">
+  #{@parent.link_to('Odjava:', { controller: 'dc_common', action: 'logout', return_to: @parent.request.url} )}
+  #{@parent.session[:user_name]}
+  </span>
+]
+  end
+  html
+end
 
 ########################################################################
 #
@@ -33,5 +54,18 @@ def default
   dashboard = Dashboard.new(@parent.session[:user_id], @parent.session[:user_roles]).render
   (dashboard.html + '<iframe id="iframe_edit" name="iframe_edit"></iframe>')
 end
+
+########################################################################
+# Renderer dispatcher. Will skip access control for login renderer.
+########################################################################
+def render_html
+  method = @opts[:method] || 'default'
+  unless method == 'login'
+    can_view, msg = @parent.dc_user_can_view(@parent, @parent.page)
+    return msg unless can_view
+  end
+  respond_to?(method) ? send(method) : "#{self.class}: Method (#{method}) not defined!"
+end
+
 
 end

@@ -67,7 +67,7 @@ end
 # Just writes out current user name
 ########################################################################
 def dash_001_who_am_i
-  dashboard_element(:info, 'WHO AM I', "Hello #{@user.name}") 
+  dashboard_element(:info, 'WHO AM I', "Hello #{@user.name}. Information text example.") 
 end
 
 ########################################################################
@@ -95,13 +95,14 @@ def dash_030_error
   if @user.username == 'rems'
     dashboard_element(:info, 'HELLO MR. REMS', '')
   else
-    dashboard_element(:error, 'YOU ARE NOT MR. REMS', 'This is error')
+    dashboard_element(:error, 'YOU ARE NOT MR. REMS', 'This is error text example.')
   end    
 end
 
 ########################################################################
 # Collect all methods starting with _dash, sort them and execute them in order.
-# Thats how result can be predictable and reused later so dashboard can be created faster.
+# Thats how result order can be predictable and reused if needed resulting in 
+# faster dashboard creation. 
 ########################################################################
 def render()
   dash_methods = methods.delete_if {|method| !method.to_s.start_with?('dash_')}

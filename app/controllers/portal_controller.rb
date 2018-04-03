@@ -112,4 +112,34 @@ def page()
   get_design_and_render @design
 end
 
+####################################################################
+# Process login with an option to authenticate to LDAP server.
+####################################################################
+def process_login
+# Something is really wrong
+  return dc_render_404('Login:') unless ( params[:record] and params[:record][:username] and params[:record][:password] )
+  success = false
+  unless params[:record][:password].blank? 
+# user must be defined locally
+    user = DcUser.find_by(username: params[:record][:username])
+    if user
+# LDAP alternative. You must add gem 'net-ldap' to Gemfile    
+#      ldap = Net::LDAP.new(host: 'ldap.yourdomain.com')
+#      ldap.auth("#{params[:record][:username]}@yourdomain.com", params[:record][:password])
+#      success = ldap.bind
+
+# authenticate locally
+      success = user.authenticate(params[:record][:password]) unless success
+    end
+  end
+# 
+  if success
+    fill_login_data(user, false)
+    redirect_to '/'
+  else # display login error
+    flash[:error] = t('drgcms.invalid_username')
+    redirect_to "/login"
+  end
+end
+
 end

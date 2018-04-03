@@ -6,16 +6,22 @@
       <%= link_to image_tag('logo.png', :border => 0), '/' %>
       <span id="app-title">Intranet portal</span>
     </div>
+    
     <div style="float: right;"> 
-      <%= dc_render(:portal_skupno, method: 'login') %> 
+      <%= dc_render(:home, method: 'login') %> 
     </div>
+    
     <div style="clear: both;"></div>
   </div>
   
   <%= dc_render :dc_menu, name: 'portal-menu' %>
 
   <div id="page">
-    <%= dc_render( @options['renderer'] || @page.subject_link ) %>
+    <% if @options['render'] %>
+      <%= dc_render_design_part @options['render'] %>    
+    <% else %>
+      <%= dc_render( @options['renderer'] || @page.subject_link ) %>
+    <% end %>
   </div>
 </div>
 

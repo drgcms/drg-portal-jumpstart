@@ -66,11 +66,12 @@ end
 def update_routes
   insert_into_file "config/routes.rb",
 %Q[
-  root :to => "portal#page"
+  root :to => 'portal#page'
   DrgCms.routes
-  resources :init # remove after initial run
 
-  get '*path' => "portal#page"
+  post '/portal/process_login' => 'portal#process_login'
+  resources :init # remove after initial run
+  get '*path' => 'portal#page'
 
 ],
   after: "Rails.application.routes.draw do"
