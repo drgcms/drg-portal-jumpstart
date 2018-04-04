@@ -33,14 +33,14 @@ def login
   html = if @parent.session[:user_id].nil?
 %Q[
   <span class="portal-login">
-  #{@parent.link_to('Login:', '/login')}
+  #{@parent.link_to('LOGIN ', '/login')}
   </span>
 ]
   else
 %Q[
   <span class="portal-login">
-  #{@parent.link_to('Odjava:', { controller: 'dc_common', action: 'logout', return_to: @parent.request.url} )}
-  #{@parent.session[:user_name]}
+  #{@parent.link_to('LOGOUT : ', { controller: 'dc_common', action: 'logout', return_to: @parent.request.url} )}
+  #{@parent.session[:user_name]}&nbsp;
   </span>
 ]
   end

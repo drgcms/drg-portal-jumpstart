@@ -23,6 +23,8 @@
 
 class Dashboard 
 include DcApplicationHelper  
+include ActionView::Helpers::UrlHelper
+
 attr_reader :html, :js, :footer
 
 ########################################################################
@@ -76,7 +78,7 @@ end
 def dash_010_diary_status
   count = Diary.where(user_id: @user_id, closed: false).count
   if count > 0
-    text  = "#{@parent.link_to(@server + '/diary','Click')}, to review." 
+    text  = "#{link_to('Click', @server + '/diary')}, to review." 
     dashboard_element(:warning, "#{count} UNCLOSED documents in DIARY", text) 
   end
 end

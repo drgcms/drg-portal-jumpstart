@@ -117,7 +117,7 @@ def seed_admin
   poll.display = 'td'
   poll.operation = 'link'
   poll.parameters = '/portal/process_login'
-  poll.title = 'Internal portal login'
+  poll.title = 'Intranet portal login'
   poll.save
 #
   i = poll.dc_poll_items.new
@@ -243,7 +243,7 @@ def seed_data
     dc_design_id: design.id,
     dc_site_id: site.id,
     publish_date: Time.now,
-    params: %Q[render: "dc_render(:dc_poll, poll_id: 'login')"]
+    params: %Q[render: "dc_render(:dc_poll, poll_id: 'login', div: 'login')"]
   )
   page.save
 

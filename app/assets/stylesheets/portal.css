@@ -111,30 +111,43 @@ margin-left: 3em;
 }
 
 /********************** LOGIN ***********************************/
-.poll-div {
+#login {
+  margin: 5rem auto;
+  text-align: center;
+  display: table;
+  background-color: #eee;
+  padding: 1rem;
+  border: 2px solid #444;
+}
+
+#login .poll-div {
 text-align: left;
 font-size: 1.2em;
 }
 
-.poll-div .poll-title {
+#login .poll-div .poll-title {
 font-size: 1.6em;
 font-weight: bold;
-margin: 1rem 0;
+margin-bottom: 1.5rem;
 }
 
-.poll-div .poll-data-text {
+#login .poll-div .poll-data-text {
 font-weight: bold;
 text-align: left;
 margin-top: 0.5rem;
 }
 
-.poll-div .dc-submit {
+#login .poll-div .dc-submit {
 margin-top: 1rem;
 font-size: 1rem;
 border: 2px solid #444;
 padding: 5px 12px;
 background: #ddd;
 }
+
+.portal-login {font-size: 1.2em;}
+
+
 
 /******************* Dashboard ***************************/
 .dashboard-panel {
@@ -169,21 +182,21 @@ background: #ddd;
   box-shadow: 0 3px 3px -3px #888; 
 }
 .dashboard-error #title {
-  background-color: tomato;
+  background-color: rgba(128,0,0,0.5);
   color: white;
   padding: 6px;
   font-size: 16px;
   font-weight: bold;
 }
 .dashboard-warning #title {
-  background-color: #97e;
+  background-color: rgba(0,0,128,0.5);
   color: white;
   padding: 6px;
   font-size: 16px;
   font-weight: bold;
 }
 .dashboard-info #title {
-  background-color: #396;
+  background-color: rgba(0,128,0,0.5);;
   color: white;
   padding: 6px;
   font-size: 16px;
@@ -199,7 +212,7 @@ background: #ddd;
   padding: 4px;
 }
 
-#dash-footer {
+#dashboard-footer {
 margin: 4px;
 padding:4px; 
 background-color: #f8f8f8;
