@@ -15,7 +15,7 @@ how to install required tools.
 #### Creating a new app
 
 ```bash
-rails new your_app_name --skip-active-record -m drg_portal_jumpstart/template.rb
+rails new your_app_name --skip-active-record --skip-action-cable -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb
 ```
 
 The command will create new Ruby on Rails project in your_app_name directory, update 
@@ -31,10 +31,10 @@ cd your_app_name
 
 **Note:** If your MongoDB is not installed localy, you must first update config/mongoid.yml 
 file and set host name (perhaps also username and password) under development: section. 
-Remote MongoDB setup requires an extra step, since default 
+Remote MongoDB setup requires an extra step, but default 
 local instalation doesn't need any administration at all. No login credentials is required
 and MongoDB will create new databases and collections automatically when first used.
-But it also allows connections only from localhost so security is not in danger.
+Since default instalation allows connections only from localhost security is not in danger.
 
 Start Ruby on Rails server localy 
 
