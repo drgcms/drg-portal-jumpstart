@@ -1,18 +1,16 @@
 # DRG portal jumpstart
 
-Start your DRG portal application in matter of minutes.
+All you need to start Intranet portal in minutes.
 
-**Requires:**
-Ruby: Version >= 2.4 
-Ruby on Rails:  Version >= 5.1
-MongoDB: Version >= 3.4 installed locally (if not installed locally see instructions below)
-Git: 
+**Requires:**<br>
+Ruby: Version >= 2.4 <br>
+Ruby on Rails:  Version >= 5.1<br>
+MongoDB: Version >= 3.4 installed locally (if not installed locally see instructions below)<br>
+Git: <br>
 
 You can read this short instructions https://www.drgcms.org/books/chapter/drgcms-documentation/0102-os-and-tools-instalation 
 how to install required tools.
 
-When you have all tools installed, goto command line, change directory to your applications
-root and enter command:
 
 #### Creating a new app
 
@@ -31,11 +29,11 @@ Change directory to your_app_name.
 cd your_app_name
 ```
 
-**Note:** If your MongoDB is not installed localy, you must update config/mongoid.yml 
+**Note:** If your MongoDB is not installed localy, you must first update config/mongoid.yml 
 file and set host name (perhaps also username and password) under development: section. 
-That is why remote database configuration might be harder for beginners since default 
-local instalation doesn't need any administration at all. It doesn't need login 
-credentials and will create new databases and collections automatically when first used.
+Remote MongoDB setup requires an extra step, since default 
+local instalation doesn't need any administration at all. No login credentials is required
+and MongoDB will create new databases and collections automatically when first used.
 But it also allows connections only from localhost so security is not in danger.
 
 Start Ruby on Rails server localy 
@@ -44,7 +42,7 @@ Start Ruby on Rails server localy
 rails server
 ```
 
-Open Internet browser and go to "http://localhost:3000" address. You should be 
+Open Internet browser and point to "http://localhost:3000" address. You should be 
 welcomed with page doesn't exist error. Which is OK since no data has 
 been declared in portal database.
 
