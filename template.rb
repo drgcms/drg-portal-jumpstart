@@ -12,7 +12,7 @@ def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
     source_paths.unshift(tempdir = Dir.mktmpdir("jumpstart-"))
-    at_exit { FileUtils.remove_entry(tempdir) }
+#    at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
       "https://github.com/drgcms/drg-portal-jumpstart.git",
