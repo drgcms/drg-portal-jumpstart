@@ -32,16 +32,16 @@ class HomeRenderer < DcRenderer
 def login
   html = if @parent.session[:user_id].nil?
 %Q[
-  <span class="portal-login">
+  <div class="portal-login">
   #{@parent.link_to('LOGIN ', '/login')}
-  </span>
+  </div>
 ]
   else
 %Q[
-  <span class="portal-login">
+  <div class="portal-login">
   #{@parent.link_to('LOGOUT : ', { controller: 'dc_common', action: 'logout', return_to: @parent.request.url} )}
   #{@parent.session[:user_name]}&nbsp;
-  </span>
+  </div>
 ]
   end
   html

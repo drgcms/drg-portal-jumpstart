@@ -38,14 +38,6 @@ p, h1, h2, h3, h4, h5, h6 {
   padding: 2px 4px 2px 4px;
 }
 
-#site-top {
-  padding: 0px;
-  padding-top: 8px;
-  border-spacing: 0px;
-  text-align: left;
-  margin-bottom: 3px;
-}
-
 #site-footer {
   width: 966px;
   margin: 0 auto;  
@@ -61,10 +53,11 @@ color: #222;
 }
 
 #app-title {
-font-size: 2em; 
+font-size: 2.5em; 
 font-weight: bold;
-color: #669;
-margin-left: 3em;
+color: #fff;
+margin: 0 1em;
+vertical-align: middle;
 }
 
 #page {
@@ -145,10 +138,6 @@ padding: 5px 12px;
 background: #ddd;
 }
 
-.portal-login {font-size: 1.2em;}
-
-
-
 /******************* Dashboard ***************************/
 .dashboard-panel {
   border: none;
@@ -223,3 +212,73 @@ border: 1px solid #eee;
 
 #dc-action-menu, #dc-action-menu a {color: #396;}
 #dc-action-menu a:hover {color: #fff;}
+
+
+ #site-top {
+  background-color: #444;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+  
+#site-top img {
+  vertical-align: middle;
+  padding: 4px;
+}
+
+#site-top ul a {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.2em;
+  font-weight: normal;  
+  padding: 1rem;
+}
+
+#site-top ul a:hover {
+  color: #fff;
+}
+
+#site-top ul li {
+  background: #444;
+  display: inline-block;
+  padding: 1rem 0;
+}
+
+#site-top ul li.menu-selected, #site-top ul li:hover {
+  background-color: rgba(255,255,255,0.4);
+}
+
+#site-top li ul {
+z-index: 1000;
+background: #444;
+display:none;
+box-shadow: 0 4px 4px -4px #444;
+}
+
+#site-top li:hover > ul {
+display:block;
+}
+
+#site-top ul li ul {
+position:absolute; 
+min-width:150px;
+margin-top: 1rem;
+}
+
+#site-top ul li ul li {
+padding: 0.5rem 0;
+display:block;
+}
+#site-top ul li ul li:hover {
+background-color: rgba(255,255,255,0.4);
+}
+
+.portal-login {
+font-size: 1.2em; 
+color: #fff;
+vertical-align: middle;
+padding: 1rem;
+}
+
+.portal-login a  {
+  color: rgba(255,255,255,0.8);
+  color: #ccc;
+}
