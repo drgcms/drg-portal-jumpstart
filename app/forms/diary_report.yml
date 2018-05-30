@@ -1,0 +1,35 @@
+table: dc_memory
+title: Enter start and end date for report
+
+form:
+  height: 120px;
+  actions:
+    1:
+      type: link
+      controller: cmsedit
+      form_name: diary
+      table: diary
+      caption: Back
+      icon: arrow-left
+    2:
+      type: ajax
+      method: post
+      controller: reports
+      action: diary
+      caption: Run report
+      icon: cog
+
+  fields:
+    10:
+      name: date_from
+      type: date_picker
+      caption: Start date
+      html: 
+        required: 1
+
+    20:
+      name: date_to
+      type: date_picker
+      caption: End date
+      html: 
+        required: 1
