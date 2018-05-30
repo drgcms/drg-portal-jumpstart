@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ENV['RAILS_ENV'] ||='development' 
 
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0'
 gem 'activeresource'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
@@ -33,9 +33,16 @@ gem 'foundation-rails' #, '~> 6.3.0'
 gem 'drg_cms' #, '= 0.0.7'
 gem 'drg_default_html_editor' #, '= 0.0.1'
 
+gem 'bootsnap', require: false
+gem 'spreadsheet'
+
 if ENV['RAILS_ENV'] == 'development' #DEVELOPMENT
   gem 'puma'
   gem 'listen'
+
+  gem 'spring'
+  gem 'spring-watcher-listen' #, '~> 2.0.0'
+  
 #  gem 'my_own_gem', path: '../to_my_own_gem'
 else #PRODUCTION
 end
