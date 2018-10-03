@@ -32,18 +32,18 @@ cd your_app_name
 **Note:** If your MongoDB is not installed localy, you must first update config/mongoid.yml 
 file and set host name (perhaps also username and password) under development: section. 
 Remote MongoDB setup requires an extra step, but default 
-local instalation doesn't need any administration at all. No login credentials is required
+local installation doesn't need any administration at all. No login credentials is required
 and MongoDB will create new databases and collections automatically when first used.
-Since default instalation allows connections only from localhost security is not in danger.
+Since default installation allows connections only from localhost security is not in danger.
 
-Start Ruby on Rails server localy 
+Start Ruby on Rails server locally 
 
 ```bash
 rails server
 ```
 
 Open Internet browser and point to "http://localhost:3000" address. You should be 
-welcomed with page doesn't exist error. Which is OK since no data has 
+welcomed with page doesn't exist error. Which is OK since no data has yet 
 been declared in portal database.
 
 #### Initialize portal data

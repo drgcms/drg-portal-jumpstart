@@ -64,7 +64,7 @@ vertical-align: middle;
   padding-top: 4px; 
 }
 #page hr {
-  margin-top: 12px; 
+  margin: 0.5rem 0; 
   background: linear-gradient(to right, #ddd 0%, #eee 100%);
 }
 
