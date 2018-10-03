@@ -36,13 +36,7 @@ def get_design_and_render(design_doc)
   layout      = @site.site_layout.blank? ? 'content' : @site.site_layout
   site_top    = '<%= dc_page_top %>'
   site_bottom = '<%= dc_page_bottom %>'
-# lets try the rails way
- if @options[:control] and @options[:action]
-    controller = "#{@options[:control]}_control".classify.constantize rescue nil
-    extend controller if controller
-    return send @options[:action] if respond_to?(@options[:action])
-  end
-#  
+# design defined in design doc 
   if design_doc
     if !design_doc.rails_view.blank? 
       if design_doc.rails_view.downcase != 'site'
@@ -53,7 +47,7 @@ def get_design_and_render(design_doc)
       return render(inline: design, layout: layout)
     end
   end
-# 
+# design defined in site
   if @site.rails_view.blank? 
     design = site_top + @site.design + site_bottom
     return render(inline: design, layout: layout)
@@ -62,9 +56,9 @@ def get_design_and_render(design_doc)
 end
 
 ###########################################################################
-# Default request processing.
+# Default portal page request processing.
 # 
-# Za portal je potrebna manjša predelava
+# This is small change of dc_process_default_request found in dc_main_controller.
 ###########################################################################
 def page()
   session[:edit_mode] ||= 0
@@ -89,7 +83,6 @@ def page()
 # if @page is not found render 404 error
   return dc_render_404('Page!') unless @page
   dc_set_options @page.params
-  dc_set_is_mobile unless session[:is_mobile] # do it only once per session
 # find design if defined. Otherwise design MUST be declared in site
   if @page.dc_design_id
     @design = DcDesign.find(@page.dc_design_id)
@@ -105,6 +98,8 @@ def page()
   session[:last_check] ||= Time.now
   if (session[:last_check] - Time.now) > 3600
     # perform checks
+    # TO BE DONE
+    
     # update time
     session[:last_check] = Time.now
   end  
