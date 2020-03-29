@@ -3,9 +3,9 @@
 All you need to start Intranet portal in minutes.
 
 **Requires:**<br>
-Ruby: Version >= 2.4 <br>
-Ruby on Rails:  Version >= 5.1<br>
-MongoDB: Version >= 3.4 installed locally (if not installed locally see instructions below)<br>
+Ruby: Version >= 2.5 <br>
+Ruby on Rails:  Version >= 6<br>
+MongoDB: Version >= 3.6 installed locally (if not installed locally see instructions below)<br>
 Git: <br>
 
 You can read this short instructions https://www.drgcms.org/books/chapter/drgcms-documentation/0102-os-and-tools-instalation 
@@ -15,7 +15,7 @@ how to install required tools.
 #### Creating a new app
 
 ```bash
-rails new your_app_name --skip-active-record --skip-action-cable -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb
+rails new your_app_dir --skip-active-record --skip-action-cable --skip-turbolinks --skip-webpack-install -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb
 ```
 
 The command will create new Ruby on Rails project in your_app_name directory, update 
