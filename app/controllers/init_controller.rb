@@ -162,18 +162,29 @@ def seed_data
     settings: "ckeditor:\n config_file: /files/ck_config.js\n css_file: /files/ck_css.css\n",
     site_layout: "content")
   site.save
-# Default site policy
+  
+# Default site policy. Hides all menus from users not logged in
   policy = DcPolicy.new(
     description: "Default policy",
     is_default: true,
     message: "Access denied. You shold be logged in for this operation.",
     name: "Default policy")
   site.dc_policies << policy
-# Policy rules. Administrator can edit guest can view
+# Policy rules. Administrator can edit guest has no access
   rule = DcPolicyRule.new( dc_policy_role_id: @sa.id, permission: DcPermission::CAN_EDIT)
   policy.dc_policy_rules << rule
   rule = DcPolicyRule.new( dc_policy_role_id: @guest.id, permission: DcPermission::NO_ACCESS)
   policy.dc_policy_rules << rule
+# Site policy to allow public view. Required for login page.
+  public_policy = DcPolicy.new(
+    description: "Public access",
+    message: "This message should not be seen.",
+    name: "Available to all users")
+  site.dc_policies << public_policy
+# Guest can view
+  rule = DcPolicyRule.new( dc_policy_role_id: @guest.id, permission: DcPermission::CAN_VIEW)
+  public_policy.dc_policy_rules << rule
+  
 # Design document  
   design = DcDesign.new(description: 'Default portal design')
   design.rails_view = 'designs/portal'
@@ -187,6 +198,7 @@ def seed_data
     publish_date: Time.now,
   )
   page.save
+  
 # Menu
   menu = DcMenu.new(
     name: "portal-menu",
@@ -236,6 +248,7 @@ def seed_data
   menu.dc_menu_items << item
   page.menu_id = "#{menu.id};#{item.id}"
   page.save
+  
 # Page document for login
   page = DcPage.new(
     subject: 'Login',
@@ -243,6 +256,7 @@ def seed_data
     dc_design_id: design.id,
     dc_site_id: site.id,
     publish_date: Time.now,
+    policy_id: public_policy.id,
     params: %Q[render: "dc_render(:dc_poll, poll_id: 'login', div: 'login')"]
   )
   page.save

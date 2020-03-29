@@ -126,6 +126,15 @@ end
 #########################################################################
 #
 #########################################################################
+def update_layout
+# update database names  
+  gsub_file "app/views/layouts/application.html.erb", 'javascript_pack_tag', 'javascript_include_tag'
+end
+
+
+#########################################################################
+#
+#########################################################################
 def copy_gemfile
   copy_file "Gemfile", force: true 
 end
@@ -164,11 +173,12 @@ update_gitignore
 update_mongoid_setup
 update_application
 update_initializers
+update_layout
 add_stage
 #
 after_bundle do
   set_application_name
-  update_routes
+  #update_routes
   
   begin
     git :init
