@@ -11,16 +11,16 @@ require "shellwords"
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("jumpstart-"))
-    at_exit { FileUtils.remove_entry(tempdir) }
+    source_paths.unshift(temp_dir = Dir.mktmpdir("jumpstart-"))
+    at_exit { FileUtils.remove_entry(temp_dir) }
     git clone: [
       "--quiet",
       "https://github.com/drgcms/drg-portal-jumpstart.git",
-      tempdir
+      temp_dir
     ].map(&:shellescape).join(" ")
 
     if (branch = __FILE__[%r{jumpstart/(.+)/template.rb}, 1])
-      Dir.chdir(tempdir) { git checkout: branch }
+      Dir.chdir(temp_dir) { git checkout: branch }
     end
   else
     source_paths.unshift(File.dirname(__FILE__))

@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ENV['RAILS_ENV'] ||='development' 
 
-gem 'rails', '~> 6'
+gem 'rails', '~> 6.1'
 gem 'activeresource'
 
 gem 'sassc-rails'
@@ -43,7 +43,8 @@ if ENV['RAILS_ENV'] == 'development' or ENV["RAILS_ENV"] == "test"
   gem 'byebug'
   gem 'web-console'
   gem 'listen'
- 
+  
+  #gem 'drg_examples_gem'
 #  gem 'my_own_gem', path: '../to_my_own_gem'
 else #PRODUCTION
 end
