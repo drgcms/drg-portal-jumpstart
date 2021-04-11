@@ -80,33 +80,33 @@ end
 #
 ########################################################################
 def seed_admin
-# Guest role first
+  # Guest role first
   @guest = DcPolicyRole.new
   @guest.name = 'guest'
   @guest.system_name = 'guest'
   @guest.save
-# Superadmin role
+  # Superadmin role
   @sa = DcPolicyRole.new
   @sa.name = 'superadmin'
   @sa.system_name = 'superadmin'
   @sa.save
-# Superadmin user
+  # Superadmin user
   usr = DcUser.new
   usr.username    = params[:superuser]
   usr.password    = params[:password]
   usr.password_confirmation = params[:password]
   usr.first_name  = 'superadmin'
   usr.save
-# user role 
+  # user role
   user_role = DcUserRole.new
   user_role.dc_policy_role_id = @sa.id
   usr.dc_user_roles << user_role
-# cmsedit permission
+  # cmsedit permission
   permission = DcPermission.new
   permission.table_name = 'Default permission'
   permission.is_default = true
   permission.save
-# 
+
   r = DcPolicyRule.new
   r.dc_policy_role_id = @sa.id
   r.permission = DcPermission::SUPERADMIN
@@ -119,21 +119,21 @@ def seed_admin
   poll.parameters = '/portal/process_login'
   poll.title = 'Intranet portal login'
   poll.save
-#
+
   i = poll.dc_poll_items.new
   i.name = 'username'
   i.size = 15
   i.text = 'Username'
   i.type = 'text_field'
   i.save
-#  
+
   i = poll.dc_poll_items.new
   i.name = 'password'
   i.size = 15
   i.text = 'Password'
   i.type = 'password_field'
   i.save
-#
+
   i = poll.dc_poll_items.new
   i.name = 'send'
   i.text = 'Login'
@@ -150,7 +150,7 @@ def seed_data
     name: 'test',
     alias_for: 'portal.mysite.com')
   site.save
-# Site document
+  # Site document
   site = DcSite.new(
     name: 'portal.mysite.com',
     homepage_link: "home",
@@ -163,33 +163,34 @@ def seed_data
     site_layout: "content")
   site.save
   
-# Default site policy. Hides all menus from users not logged in
+  # Default site policy. Hides all menus from users not logged in
   policy = DcPolicy.new(
     description: "Default policy",
     is_default: true,
     message: "Access denied. You shold be logged in for this operation.",
     name: "Default policy")
   site.dc_policies << policy
-# Policy rules. Administrator can edit guest has no access
+  # Policy rules. Administrator can edit guest has no access
   rule = DcPolicyRule.new( dc_policy_role_id: @sa.id, permission: DcPermission::CAN_EDIT)
   policy.dc_policy_rules << rule
   rule = DcPolicyRule.new( dc_policy_role_id: @guest.id, permission: DcPermission::NO_ACCESS)
   policy.dc_policy_rules << rule
-# Site policy to allow public view. Required for login page.
+  # Site policy to allow public view. Required for login page.
   public_policy = DcPolicy.new(
     description: "Public access",
     message: "This message should not be seen.",
     name: "Available to all users")
   site.dc_policies << public_policy
-# Guest can view
+  # Guest can view
   rule = DcPolicyRule.new( dc_policy_role_id: @guest.id, permission: DcPermission::CAN_VIEW)
   public_policy.dc_policy_rules << rule
   
-# Design document  
+  # Design document
   design = DcDesign.new(description: 'Default portal design')
   design.rails_view = 'designs/portal'
   design.save
-# Page document
+
+  # Page document
   page = DcPage.new(
     subject: 'Home page',
     subject_link: 'home',
@@ -199,25 +200,25 @@ def seed_data
   )
   page.save
   
-# Menu
+  # Menu
   menu = DcMenu.new(
     name: "portal-menu",
     description: "Internal portal menu",
     dc_site_id: site.id
     )
   menu.save
-# update menu_id in site  
+  # update menu_id in site
   site.menu_id = menu.id
   site.save
-# Items
+  # Items
   item = DcMenuItem.new(caption: 'Home', link: 'home', order: 10)
   item.page_id = page.id
   menu.dc_menu_items << item
-# This menu item will be selected when page is displayed  
+  # This menu item will be selected when page is displayed
   page.menu_id = "#{menu.id};#{item.id}"
   page.save
 
-# Page and menu for Diary
+  # Page and menu for Diary
   page = DcPage.new(
     subject: 'Diary',
     subject_link: 'diary',
@@ -226,14 +227,30 @@ def seed_data
     publish_date: Time.now
   )
   page.save
-# 
+
   item = DcMenuItem.new(caption: 'Diary', link: 'diary', order: 20)
   item.page_id = page.id
   menu.dc_menu_items << item
   page.menu_id = "#{menu.id};#{item.id}"
   page.save
+  
+  # ToDo page
+  page = DcPage.new(
+    subject: 'ToDo',
+    subject_link: 'todo',
+    dc_design_id: design.id,
+    dc_site_id: site.id,
+    publish_date: Time.now
+  )
+  page.save
 
-# Additional empty page
+  item = DcMenuItem.new(caption: 'ToDo', link: 'todo', order: 30)
+  item.page_id = page.id
+  menu.dc_menu_items << item
+  page.menu_id = "#{menu.id};#{item.id}"
+  page.save
+
+  # Additional empty page
   page = DcPage.new(
     subject: 'Blank',
     subject_link: 'blank',
@@ -242,14 +259,14 @@ def seed_data
     publish_date: Time.now
   )
   page.save
-# 
+
   item = DcMenuItem.new(caption: 'Blank', link: 'blank', order: 30)
   item.page_id = page.id
   menu.dc_menu_items << item
   page.menu_id = "#{menu.id};#{item.id}"
   page.save
   
-# Page document for login
+  # Page document for login
   page = DcPage.new(
     subject: 'Login',
     subject_link: 'login',
@@ -260,8 +277,6 @@ def seed_data
     params: %Q[render: "dc_render(:dc_poll, poll_id: 'login', div: 'login')"]
   )
   page.save
-
-  
 end
 
 end

@@ -118,22 +118,22 @@ def seed
     p 'DcSite (Sites) collection is not empty! Aborting.'
     return 
   end
-#
+
   if (sa = DcPolicyRole.find_by(system_name: 'superadmin')).nil?
     p 'superadmin role not defined! Aborting.'
     return 
   end
-#
+
   if (guest = DcPolicyRole.find_by(system_name: 'guest')).nil?
     p 'guest role not defined! Aborting.'
     return 
   end
-# Test site document points to real site document
+  # Test site document points to real site document
   site = DcSite.new(
     name: 'test',
     alias_for: 'portal.mysite.com')
   site.save
-# Site document
+  # Site document
   site = DcSite.new(
     name: 'portal.mysite.com',
     homepage_link: "home",
@@ -145,23 +145,23 @@ def seed
     settings: "ckeditor:\n config_file: /files/ck_config.js\n css_file: /files/ck_css.css\n",
     site_layout: "content")
   site.save
-# Default site policy
+  # Default site policy
   policy = DcPolicy.new(
     description: "Default policy",
     is_default: true,
     message: "Access denied. You shold be logged in for this operation.",
     name: "Default policy")
   site.dc_policies << policy
-# Policy rules. Administrator can edit guest can view
+  # Policy rules. Administrator can edit guest can view
   rule = DcPolicyRule.new( dc_policy_role_id: sa.id, permission: DcPermission::CAN_EDIT)
   policy.dc_policy_rules << rule
   rule = DcPolicyRule.new( dc_policy_role_id: guest.id, permission: DcPermission::NO_ACCESS)
   policy.dc_policy_rules << rule
-# Design document  
+  # Design document
   design = DcDesign.new(description: 'Default portal design')
   design.rails_view = 'designs/portal'
   design.save
-# Page document
+  # Page document
   page = DcPage.new(
     subject: 'Home page',
     subject_link: 'home',
@@ -170,25 +170,25 @@ def seed
     publish_date: Time.now,
   )
   page.save
-# Menu
+  # Menu
   menu = DcMenu.new(
     name: "portal-menu",
     description: "Internal portal menu",
     dc_site_id: site.id
     )
   menu.save
-# update menu_id in site  
+  # update menu_id in site
   site.menu_id = menu.id
   site.save
-# Items
+  # Items
   item = DcMenuItem.new(caption: 'Home', link: 'home', order: 10)
   item.page_id = page.id
   menu.dc_menu_items << item
-# This menu item will be selected when page is displayed  
+  # This menu item will be selected when page is displayed
   page.menu_id = "#{menu.id};#{item.id}"
   page.save
 
-# Page and menu for Diary
+  # Page and menu for Diary
   page = DcPage.new(
     subject: 'Diary',
     subject_link: 'diary',
@@ -197,14 +197,30 @@ def seed
     publish_date: Time.now
   )
   page.save
-# 
+
   item = DcMenuItem.new(caption: 'Diary', link: 'diary', order: 20)
   item.page_id = page.id
   menu.dc_menu_items << item
   page.menu_id = "#{menu.id};#{item.id}"
   page.save
 
-# Additional empty page
+  # Page and menu for ToDo
+  page = DcPage.new(
+    subject: 'ToDo',
+    subject_link: 'todo',
+    dc_design_id: design._id,
+    dc_site_id: site.id,
+    publish_date: Time.now
+  )
+  page.save
+
+  item = DcMenuItem.new(caption: 'ToDo', link: 'todo', order: 30)
+  item.page_id = page.id
+  menu.dc_menu_items << item
+  page.menu_id = "#{menu.id};#{item.id}"
+  page.save
+
+  # Additional empty page
   page = DcPage.new(
     subject: 'Blank',
     subject_link: 'blank',
@@ -213,8 +229,8 @@ def seed
     publish_date: Time.now
   )
   page.save
-# 
-  item = DcMenuItem.new(caption: 'Blank', link: 'blank', order: 30)
+
+  item = DcMenuItem.new(caption: 'Blank', link: 'blank', order: 200)
   item.page_id = page.id
   menu.dc_menu_items << item
   page.menu_id = "#{menu.id};#{item.id}"
