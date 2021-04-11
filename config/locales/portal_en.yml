@@ -16,7 +16,7 @@ en:
         closed: Closed
 
       todo:
-        tabletitle: Todo list and reminder
+        tabletitle: Todo, task list and reminder
         choices4_priority: 'Low:1,Medium:2,High:3'
 
         subject: Subject
@@ -24,6 +24,7 @@ en:
         time: Due time
         priority: Priority
         closed: Closed
+        closed_state: Closed
         time_closed: Closed time
         dc_user_id: Owner
         created_by: Created by

@@ -213,6 +213,9 @@ border: 1px solid #eee;
 #dc-action-menu, #dc-action-menu a {color: #396;}
 #dc-action-menu a:hover {color: #fff;}
 
+.dc-action-menu.app-menu {
+  margin-bottom: 8px;
+}
 
  #site-top {
   background-color: #444;

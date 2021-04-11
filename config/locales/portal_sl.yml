@@ -16,7 +16,7 @@ sl:
         closed: Zaključen
 
       todo:
-        tabletitle: Naloge
+        tabletitle: Naloge in opomniki
         choices4_priority: 'Nizka:1,Srednja:2,Visoka:3'
 
         subject: Zadeva
