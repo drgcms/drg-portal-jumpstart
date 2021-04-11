@@ -97,7 +97,7 @@ def add_stage
   begin
   copy_file '../' + File.join(@app_path,"config/environments/production.rb"),
             '../' + File.join(@app_path,"config/environments/stage.rb"), force: true
-  rescue Exception
+  rescue Exception => e
     p 'Error creating stage.rb file. If you are going to use staging environment just copy config/environments/production.rb to stage.rb!'
   end
 end
@@ -153,9 +153,9 @@ def update_gitignore
   append_to_file ".gitignore", 
 %Q[
 #added by DRG
-/nbproject/
 .gitignore
 /vendor/ruby
+/.bundle
 ]
 end
 
@@ -177,9 +177,6 @@ update_layout
 add_stage
 #
 after_bundle do
-  set_application_name
-  #update_routes
-  
   begin
     git :init
     git add: "."
