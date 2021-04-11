@@ -15,6 +15,20 @@ en:
         created_by: Owner
         closed: Closed
 
+      todo:
+        tabletitle: Todo list and reminder
+        choices4_priority: 'Low:1,Medium:2,High:3'
+
+        subject: Subject
+        body: Body
+        time: Due time
+        priority: Priority
+        closed: Closed
+        time_closed: Closed time
+        dc_user_id: Owner
+        created_by: Created by
+        created_at: Created at
+
     help:
       diary:
         title: Short title
@@ -24,3 +38,19 @@ en:
         search: Data used for searching data  
         created_by: This note was created by
         closed: Document is closed. No further work necessary.
+
+      todo:
+        subject: Brief description of reminder
+        body: Long descripton
+        time: Due time reminder. ex. Must be finished. Can be blank.
+        priority: Priority level
+        closed: Reminder is closed
+        time_closed: Time when closed
+        dc_user_id: Owner of reminder
+        created_by: Reminder was created by
+
+  texts:
+    todo:
+      close: Close task
+      confirm: Confirm task close
+      filter_hide_closed: Hide closed tasks

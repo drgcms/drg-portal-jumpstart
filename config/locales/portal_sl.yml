@@ -15,6 +15,21 @@ sl:
         user_id: Ustvaril
         closed: Zaključen
 
+      todo:
+        tabletitle: Naloge
+        choices4_priority: 'Nizka:1,Srednja:2,Visoka:3'
+
+        subject: Zadeva
+        body: Opis
+        time: Zaključi do
+        priority: Prioriteta
+        closed: Zaključeno
+        closed_state: Zaključeno
+        time_closed: Čas zaključka
+        dc_user_id: Lastnik
+        created_by: Ustvaril
+        created_at: Ustvarjeno
+
     help:
       diary:
         title: Kratek naslov
@@ -24,4 +39,19 @@ sl:
         search: Podatki za iskanje dogodkov
         user_id: Vpis je ustvaril
         closed: Dokument zaključen. Nadaljno delo ni potrebno.
-        
+
+      todo:
+        subject: Kratek opis opomnik
+        body: Daljši opis
+        time: Opomnik. Do kdaj naj bi bil opomnik zaprt. Lahko pustite prazno
+        time_closed: Datum in ura, ko je bil opomnik zaključen
+        priority: Prioriteta
+        closed: Opomnik je zaključen
+        dc_user_id: Opomnik velja za uorabnika
+        created_by: Opomnik je ustvaril uporabnik
+
+  texts:
+    todo:
+      close: Zaključeno
+      confirm: Potrdite zaključek naloge
+      filter_hide_closed: Skrij zaključene naloge

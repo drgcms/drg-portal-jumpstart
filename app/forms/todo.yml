@@ -1,0 +1,91 @@
+# Form for todo
+table: todo
+
+index:
+  filter: priority
+  sort: subject
+  actions: standard
+  
+result_set:
+  filter: my_todo_documents_filter
+  actions:
+    1: edit
+    10:
+      type: ajax
+      title: texts.todo.close
+      icon: check
+      action: run
+      active: TodoControl.close_button_active
+      control: todo.close_task
+      confirm: texts.todo.confirm
+
+  tr_style:
+    eval: '"background-color: #faa" if document.time < Time.now.localtime and !document.closed'
+# Choose from
+# _id,created_at,updated_at,subject,body,time_begin,priority,closed,user_id,created_by
+  columns:
+    10:
+      name: time
+      format: d
+      width: 6%
+    20:
+      name: priority
+      eval: dc_name4_value
+      width: 6%
+      td_style:
+        eval: '"color: #{%w[black darkgreen darkblue red][document.closed ? 0 : document.priority]};"'
+    30:
+      name: subject
+      width: 25%
+    40:
+      name: created_at
+      format: d
+      width: 6%
+    50:
+      name: created_by
+      eval: dc_name4_id,dc_user,name
+    60:
+      name: closed_state
+      format: d
+      width: 12%
+      sort: n
+
+form:
+  actions:
+    standard: 1
+    10:
+      type: ajax
+      text: texts.todo.close
+      icon: check
+      action: run
+      active: TodoControl.close_button_active
+      control: todo.close_task
+
+  fields:
+    10:
+      name: dc_user_id
+      type: select
+      eval: dc_choices4('dc_user','name','id')
+      default:
+        eval: '@parent.session[:user_id]'
+    20:
+      name: subject
+      type: text_field
+      size: 80
+    30:
+      name: body
+      type: text_area
+      size: 80x10
+    40:
+      name: time
+      type: date_picker
+      format: '%d.%m.%Y'
+      size: 10
+    50:
+      name: priority
+      type: radio
+      inline: true
+    60:
+      name: closed
+      type: check_box
+      size: 50
