@@ -1,11 +1,11 @@
 # DRG portal jumpstart
 
-All you need to start Intranet portal in minutes.
+All you need to start Intranet portal in just a few minutes.
 
 **Requires:**<br>
-Ruby: Version >= 2.5 <br>
-Ruby on Rails:  Version >= 6<br>
-MongoDB: Version >= 3.6 installed locally (if not installed locally see instructions below)<br>
+Ruby: Version >= 2.7 <br>
+Ruby on Rails:  Version >= 6.1<br>
+MongoDB: Version >= 4.0 installed locally (if not installed locally see instructions below)<br>
 Git: <br>
 
 You can read this short instructions https://www.drgcms.org/books/chapter/drgcms-documentation/0102-os-and-tools-instalation 
