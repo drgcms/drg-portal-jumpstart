@@ -8,7 +8,7 @@ Ruby on Rails:  Version >= 6.1<br>
 MongoDB: Version >= 4.0 installed locally (if not installed locally see instructions below)<br>
 Git: <br>
 
-You can read this short instructions https://www.drgcms.org/books/chapter/drgcms-documentation/0102-os-and-tools-instalation 
+You can read this short instructions https://www.drgcms.org/docs/drg-cms-documentation/installation-and-deployment/os-and-tools-instalation 
 how to install required tools.
 
 
