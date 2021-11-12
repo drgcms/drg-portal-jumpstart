@@ -1,0 +1,44 @@
+body {
+  font-family: Helvetica;
+  letter-spacing: 0px;
+  margin: 5px;
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+a:link, a:active, a:visited { 
+  color: #d53535; 
+  text-decoration: none; 
+  background: transparent; 
+}
+
+a:hover { 
+  text-decoration: none; 
+  color: #000; 
+}
+
+p, h1, h2, h3, h4, h5, h6 { 
+  margin-top: 2px; 
+  margin-bottom: 2px;
+} 
+
+input, textarea {
+  font-size: 1em;
+}
+
+.nice-class {
+  background-color: lightblue;
+  color: red;
+  padding: 4px;
+  margin: 2px;
+}
+
+.dc-link {
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 8px 6px;
+  border-radius: 3px;
+  color: #666;
+  background: transparent linear-gradient(to bottom, #fff 0%, #e2e2e2 100%) repeat scroll 0% 0%;
+  border: 1px solid #ddd;
+}
