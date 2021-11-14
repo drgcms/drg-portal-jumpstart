@@ -1,6 +1,6 @@
 # DRG portal jumpstart
 
-All you need to start Intranet portal in just a few minutes.
+All you need to start Intranet application portal in just a few minutes.
 
 **Requires:**<br>
 Ruby: Version >= 2.7 <br>
@@ -15,7 +15,7 @@ how to install required tools.
 #### Creating a new app
 
 ```bash
-rails new your_app_dir --skip-active-record --skip-action-cable --skip-turbolinks --skip-webpack-install -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb
+rails new your_app_dir --skip-active-record --skip-action-cable --skip-turbolinks --skip-webpack-install -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.r_
 ```
 
 The command will create new Ruby on Rails project in your_app_name directory, update 
