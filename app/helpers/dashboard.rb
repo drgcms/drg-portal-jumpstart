@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 
+# Copyright (c)
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,8 +21,8 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class Dashboard 
-include DcApplicationHelper  
+class Dashboard
+include DcApplicationHelper
 include ActionView::Helpers::UrlHelper
 
 attr_reader :html, :js, :footer
@@ -30,26 +30,27 @@ attr_reader :html, :js, :footer
 ########################################################################
 # Initialize dashboard element
 ########################################################################
-def initialize(user, user_roles=nil) 
-# parameters send as DcUser object or just as id
+def initialize(user, user_roles = nil)
+  @html, @js, @msgs = '', '', {}
+  # parameters send as DcUser object or just as id
   if user.class == DcUser
     @user       = user
     @user_id    = user.id
     @user_roles = user.dc_user_roles.inject([]) {|r,v| r << v.dc_policy_role_id}
   else
+    return if user.nil?
+
     @user_id    = user
     @user       = DcUser.find(@user_id)
     @user_roles = user_roles
   end
-# 
-  @server  = case
-    when Rails.env == 'production' then 'http://portal.mysite.com'
-    when Rails.env == 'stage' then 'http://stage.portal.mysite.com'
-    else 'http://localhost:3000'
-  end  
-  @html, @js = ''
-  @msgs      = {}
-  self  
+
+  @server = case Rails.env
+            when 'production' then 'http://portal.mysite.com'
+            when 'stage' then 'http://stage.portal.mysite.com'
+            else 'http://localhost:3000'
+            end
+  self
 end
 
 ########################################################################
@@ -98,7 +99,7 @@ def dash_030_error
     dashboard_element(:info, 'HELLO MR. REMS', '')
   else
     dashboard_element(:error, 'YOU ARE NOT MR. REMS', 'This is error text example.')
-  end    
+  end
 end
 
 ########################################################################
@@ -106,14 +107,15 @@ end
 # Thats how result order can be predictable and reused if needed resulting in 
 # faster dashboard creation. 
 ########################################################################
-def render()
-  dash_methods = methods.delete_if {|method| !method.to_s.start_with?('dash_')}
-  dash_methods.sort.each { |method| send(method) }
-# Create output
-  [:error,:warning,:info].each {|type| @html << "<div class=\"dashboard-panel\">#{@msgs[type]}</div>" }
-  @html << '<div style="clear: both;"></div>'
+def render
+  if @user
+    dash_methods = methods.delete_if {|method| !method.to_s.start_with?('dash_')}
+    dash_methods.sort.each { |method| send(method) }
+    # Create output
+    %i[error warning info].each { |type| @html << "<div class=\"dashboard-panel\">#{@msgs[type]}</div>" }
+    @html << '<div style="clear: both;"></div>'
+  end
   self
 end
 
-end 
-
+end

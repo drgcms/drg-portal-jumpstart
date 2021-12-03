@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 
+# Copyright (c)
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -25,26 +25,25 @@
 #
 ########################################################################
 class HomeRenderer < DcRenderer
-  
+
 ########################################################################
 # Render login/logout and loged in user
 ########################################################################
 def login
-  html = if @parent.session[:user_id].nil?
-%Q[
+  if @parent.session[:user_id].nil?
+%(
   <div class="portal-login">
   #{@parent.link_to('LOGIN ', '/login')}
   </div>
-]
+)
   else
-%Q[
+%(
   <div class="portal-login">
   #{@parent.link_to('LOGOUT : ', { controller: 'dc_common', action: 'logout', return_to: @parent.request.url} )}
   #{@parent.session[:user_name]}&nbsp;
   </div>
-]
+)
   end
-  html
 end
 
 ########################################################################
@@ -52,7 +51,9 @@ end
 ########################################################################
 def default
   dashboard = Dashboard.new(@parent.session[:user_id], @parent.session[:user_roles]).render
-  (dashboard.html + '<iframe id="iframe_edit" name="iframe_edit"></iframe>')
+  return '' if dashboard.nil?
+
+  dashboard.html + '<iframe id="iframe_edit" name="iframe_edit"></iframe>'
 end
 
 ########################################################################
@@ -66,6 +67,5 @@ def render_html
   end
   respond_to?(method) ? send(method) : "#{self.class}: Method (#{method}) not defined!"
 end
-
 
 end
