@@ -41,9 +41,6 @@ validates :duration,   presence: true
 
 before_save :fill_search_field
 
-after_save :cache_clear
-after_destroy :cache_clear
- 
 #############################################################################
 # Before save remove all html tags from body field and put data into search field.
 #############################################################################
@@ -57,13 +54,5 @@ def fill_search_field
  
  self.search = (self.title + text).downcase
 end
-
-####################################################################
-# Clear cache if cache is configured
-####################################################################
-def cache_clear
- DrgCms.cache_clear(:diary)
-end
-
 
 end

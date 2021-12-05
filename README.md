@@ -15,9 +15,9 @@ how to install required tools.
 #### Creating a new app
 
 ```bash
-_rails new your_app_dir --skip-active-record --skip-action-cable --skip-turbolinks --skip-webpack-install -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb
-```
+rails new your_app_dir --skip-active-record --skip-action-cable --skip-turbolinks --skip-webpack-install -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb/ -``
 
+Note: Remove underscore character at the beggining of the command.
 The command will create new Ruby on Rails project in your_app_name directory, update 
 necessary configuration files and prepare minimum application templates to start 
 your own portal. Command may take few minutes to run. Most of the time is spent on 
