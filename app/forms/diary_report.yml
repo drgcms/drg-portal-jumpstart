@@ -10,7 +10,7 @@ form:
       form_name: diary
       table: diary
       caption: Back
-      icon: arrow-left
+      icon: arrow-back
     2:
       type: ajax
       method: post

@@ -12,7 +12,6 @@ gem 'non-stupid-digest-assets'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'font-awesome-rails'
 
 gem 'bcrypt' # , '~> 3.0.0'
 
@@ -32,8 +31,9 @@ gem 'unicode_utils'
 
 gem 'foundation-rails' # , '~> 6.3.0'
 
-gem 'drg_cms', '~> 0.6'
+gem 'drg_cms', '< 0.6.2'
 gem 'drg_default_html_editor' # , '= 0.0.1'
+gem 'drg_material_icons'
 gem 'select-multiple-rails'
 
 gem 'bootsnap', require: false

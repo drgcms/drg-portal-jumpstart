@@ -157,7 +157,6 @@ def seed_data
     menu_class: "DcMenu",
     menu_name: "portal-menu",
     page_class: "DcPage",
-    page_table: "dc_page",
     files_directory: "files",    
     settings: "ckeditor:\n config_file: /files/ck_config.js\n css_file: /files/ck_css.css\n",
     site_layout: "content")
@@ -252,15 +251,15 @@ def seed_data
 
   # Additional empty page
   page = DcPage.new(
-    subject: 'Blank',
-    subject_link: 'blank',
+    subject: 'Big app',
+    subject_link: 'big_app',
     dc_design_id: design.id,
     dc_site_id: site.id,
     publish_date: Time.now
   )
   page.save
 
-  item = DcMenuItem.new(caption: 'Blank', link: 'blank', order: 30)
+  item = DcMenuItem.new(caption: 'Big app', link: 'big_app', order: 30)
   item.page_id = page.id
   menu.dc_menu_items << item
   page.menu_id = "#{menu.id};#{item.id}"

@@ -30,7 +30,7 @@ class DiaryRenderer < DcRenderer
 #
 ########################################################################
 def default
-  @parent.render(partial: 'diary/menu', formats: [:html])
+  @parent.render partial: 'diary/menu'
 end
 
 end

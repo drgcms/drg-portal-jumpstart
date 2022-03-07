@@ -55,9 +55,9 @@ end
 # Returns state of todo request and closed date if request is closed
 ###########################################################################
 def closed_state
-  icon = closed ? 'check-square-o' : 'square-o'
+  icon = closed ? 'check' : ''
   date = closed ? CmsCommonHelper.dc_format_date_time(time_closed, 'd') : ''
-  %(<i class="fa fa-#{icon} fa-lg"></i> &nbsp;#{date})
+  %(<i class="mi mi-#{icon}"></i> &nbsp;#{date})
 end
 
 
