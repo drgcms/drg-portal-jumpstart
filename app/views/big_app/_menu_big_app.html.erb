@@ -1,0 +1,115 @@
+
+<div class="dropdown-menu">
+  
+<div class="top">
+  <%= image_tag('logo.png') %>
+  <h2>BigApp</h2>
+</div>
+  
+<ul>
+  <!-- top level -->
+  <li class="menu-item active">
+    <%= dc_link_to 'Users', 'users', { t: 'dc_user' }, target: 'iframe_edit', title: '' %>
+  </li>
+
+  <!-- submenu -->
+  <li class="sub-menu">
+    <div><%= fa_icon('summarize-o') %>Reports</div>
+    <ul>
+
+      <li class="sub-menu">
+        <div><%= fa_icon('print') %>Level 1</div>
+        <ul>
+
+          <li class="menu-item">
+            <%= dc_link_to 'Report 11', 'print', { t: 'dc_memory', f: 'report_11', action: :new },
+                           target: 'iframe_edit', title: 'report_11 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Report 12', 'print', { t: 'dc_memory', f: 'report_12', action: :new },
+                           target: 'iframe_edit', title: 'report_12 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Report 13', 'print', { t: 'dc_memory', f: 'report_13', action: :new },
+                           target: 'iframe_edit', title: 'report_13 tittle' %>
+          </li>
+
+        </ul>
+      </li>
+
+      <li class="sub-menu">
+        <div><%= fa_icon('print') %>Level 2</div>
+        <ul>
+
+          <li class="menu-item">
+            <%= dc_link_to 'Report 21', 'print', { t: 'dc_memory', f: 'report_21', action: :new },
+                           target: 'iframe_edit', title: 'report_21 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Report 22', 'print', { t: 'dc_memory', f: 'report_22', action: :new },
+                           target: 'iframe_edit', title: 'report_22 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Report 23', 'print', { t: 'dc_memory', f: 'report_23', action: :new },
+                           target: 'iframe_edit', title: 'report_23 tittle' %>
+          </li>
+
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+<!--  Tables -->
+  <li class="sub-menu">
+    <div><%= fa_icon('bars') %>Tables</div>
+    <ul>
+
+      <li class="sub-menu">
+        <div><%= fa_icon('bars') %>Level 1</div>
+        <ul>
+
+          <li class="menu-item">
+            <%= dc_link_to 'Table 11', 'bars', { t: 'table_11' },
+                           target: 'iframe_edit', title: 'table_11 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Table 12', 'bars', { t: 'table_12' },
+                           target: 'iframe_edit', title: 'table_12 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Table 13', 'bars', { t: 'table_13' },
+                           target: 'iframe_edit', title: 'table_13 tittle' %>
+          </li>
+
+        </ul>
+      </li>
+
+      <li class="sub-menu">
+        <div><%= fa_icon('bars') %>Level 2</div>
+        <ul>
+
+          <li class="menu-item">
+            <%= dc_link_to 'Table 21', 'bars', { t: 'dc_memory', f: 'report_21', action: :new },
+                           target: 'iframe_edit', title: 'table_21 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Table 22', 'bars', { t: 'dc_memory', f: 'report_22', action: :new },
+                           target: 'iframe_edit', title: 'table_22 tittle' %>
+          </li>
+          <li class="menu-item">
+            <%= dc_link_to 'Table 23', 'bars', { t: 'dc_memory', f: 'report_23', action: :new },
+                           target: 'iframe_edit', title: 'table_23 tittle' %>
+          </li>
+
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <!-- back to top level -->
+  <li class="menu-item">
+    <%= dc_link_to 'Run something', 'cog', { t: 'dc_memory', action: :run, control: 'big_app_control.run_something' },
+                   'data-confirm' => 'Are you sure', title: 'Run ' %>
+  </li>
+</ul>
+</div>
