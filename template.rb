@@ -186,6 +186,8 @@ update_layout
 add_stage
 
 after_bundle do
+  # conflict with own application.js
+  FileUtils.rm 'app/javascript/application.js'
   begin
     git :init
     git add: '.'

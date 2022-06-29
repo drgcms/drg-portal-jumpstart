@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 ENV['RAILS_ENV'] ||= 'development'
 
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7'
+gem 'importmap-rails'
 gem 'activeresource'
 
 gem 'sassc-rails'
 gem 'sprockets-rails', require: 'sprockets/railtie'
-gem 'sprockets', '< 4'
 gem 'uglifier'
 gem 'non-stupid-digest-assets'
 
@@ -53,7 +53,7 @@ end
 
 if ENV['RAILS_ENV'] == 'development'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'#, '~> 2.0.0'
 end
 
 if ENV['RAILS_ENV'] == 'test'
