@@ -2,9 +2,11 @@
 
 All you need to start Intranet application portal in just a few minutes.
 
+Rails 7 compatible.
+
 **Requires:**<br>
 Ruby: Version >= 2.7 <br>
-Ruby on Rails:  Version >= 6.1<br>
+Ruby on Rails:  Version >= 7<br>
 MongoDB: Version >= 4.0 installed locally (if not installed locally see instructions below)<br>
 Git: <br>
 
@@ -15,7 +17,7 @@ how to install required tools.
 #### Creating a new app
 
 ```bash
-_rails new your_app_dir --skip-active-record --skip-action-cable --skip-turbolinks --skip-webpack-install -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb -
+_rails new your_app_dir --skip-active-record --skip-action-cable --skip-hotwire --skip-webpack-install -m https://raw.github.com/drgcms/drg-portal-jumpstart/master/template.rb -
 ```
 
 Note: Remove underscore character at the beggining of the command.
