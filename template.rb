@@ -186,7 +186,7 @@ update_layout
 add_stage
 
 after_bundle do
-  # conflict with own application.js
+  #conflict with own application.js
   FileUtils.rm 'app/javascript/application.js' rescue nil
   begin
     git :init
